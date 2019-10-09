@@ -5,6 +5,11 @@ const RUN_DATA = {"Problem":{"Functions":[{"Evaluator":{"Args":{"Constraints":[]
 
 const basePath = 'http://localhost:8000/o2/v1';
 
+const defaultResultHandler = (res) => {
+    console.log(res.data);
+    return res.data;
+};
+
 export default {
     run(floorHeight) {
         const data = cloneDeep(RUN_DATA);
@@ -13,10 +18,12 @@ export default {
         floorHeightInput.Value = floorHeight;
 
         return axios.post(`${basePath}/run`, data)
-            .then(res => {
-                console.log(res.data);
-                return res.data;
-            });
+            .then(defaultResultHandler);
+    },
+
+    results(taskId) {
+      return axios.get(`${basePath}/results/${taskId}`)
+          .then(defaultResultHandler);
     }
 }
 
