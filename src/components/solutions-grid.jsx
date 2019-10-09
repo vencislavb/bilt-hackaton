@@ -35,7 +35,7 @@ export default function SolutionsGrid({ solutions }) {
                 </TableHead>
                 <TableBody>
                     {solutions.map(row => (
-                        <TableRow key={row.name}>
+                        <TableRow key={Math.random()}>
                             <TableCell component="th" scope="row">{row[0]}</TableCell>
                             <TableCell align="right">{row[1]}</TableCell>
                             <TableCell align="right">{row[2]}</TableCell>
